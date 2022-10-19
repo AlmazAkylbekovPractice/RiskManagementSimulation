@@ -3,15 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GreenApple
+  - Fireplace
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Slimes
   - Water
   - UI
-  - 
+  - GreenApples
   - 
   - 
   - 
