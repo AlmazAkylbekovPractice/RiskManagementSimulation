@@ -33,6 +33,15 @@ public class Coins : MonoBehaviour
         body = GetComponent<Rigidbody>();
         _timer = Random.Range(_timerMin, _timerMax);
         _dealTimer = Random.Range(_dealTimerMin, _dealTimerMax);
+
+        RandomiseDeal();
+    }
+
+    private void RandomiseDeal()
+    {
+        float randomNum = Random.Range(0, 2);
+        if (randomNum == 0) positiveDeal = false;
+        else positiveDeal = true;
     }
 
     private void LateUpdate()
@@ -56,9 +65,9 @@ public class Coins : MonoBehaviour
         }
         else
         {
-            dealProbability = Random.Range(0, 1);
+            dealProbability = Random.Range(0, 100);
 
-            if (dealProbability == 0)
+            if (dealProbability >= 65)
             {
                 positiveDeal = false;
             }

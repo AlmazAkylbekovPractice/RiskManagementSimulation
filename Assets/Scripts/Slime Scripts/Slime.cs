@@ -118,20 +118,15 @@ public class Slime : MonoBehaviour
         this.SetBehavior(behavior);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject == currentCoins)
-        {
-            SetBehaviorReturning();
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == campfire)
         {
             Destroy(currentCoins);
             SetBehaviorChasing();
+        } else if (other.gameObject == currentCoins)
+        {
+            SetBehaviorReturning();
         }
     }
 }

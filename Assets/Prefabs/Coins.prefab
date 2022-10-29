@@ -4856,6 +4856,7 @@ GameObject:
   - component: {fileID: 2476975310521868189}
   - component: {fileID: 4472701184779435405}
   - component: {fileID: 7987273106104885054}
+  - component: {fileID: 8171260675190194660}
   m_Layer: 7
   m_Name: Coins
   m_TagString: Bag
@@ -4963,13 +4964,13 @@ MonoBehaviour:
   _redParticles: {fileID: 7529158138943107496}
   _greenParticles: {fileID: 3301523278581190474}
   body: {fileID: 0}
-  maxValue: 1
+  maxValue: 2
   minValue: 5
-  positiveDeal: 1
+  positiveDeal: 0
   dealProbability: 0
   _dealTimerMax: 8
-  _dealTimerMin: 2
-  _timerMax: 4
+  _dealTimerMin: 1
+  _timerMax: 2
   _timerMin: 0.5
   _riskProfit: 0
 --- !u!136 &7987273106104885054
@@ -4986,6 +4987,19 @@ CapsuleCollider:
   m_Height: 4.98
   m_Direction: 0
   m_Center: {x: 0.05, y: 0.01, z: 0.03}
+--- !u!135 &8171260675190194660
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4207256948808330048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.27
+  m_Center: {x: -0.04517889, y: 0.090299904, z: -0.15244049}
 --- !u!1 &7529158138943107496
 GameObject:
   m_ObjectHideFlags: 0

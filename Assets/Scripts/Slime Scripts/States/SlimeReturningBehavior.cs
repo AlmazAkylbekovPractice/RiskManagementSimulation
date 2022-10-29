@@ -6,8 +6,14 @@ public class SlimeReturningBehavior : ISlimeBehavior
 {
     void ISlimeBehavior.Enter(Slime slime)
     {
-        slime.currentCoins.GetComponent<Coins>().isTaken = true;
-        slime.stopLossBalance = GameManager.greenHouseBalance - GameManager.greenHouseBalance * (slime.riskManagementPercent / 100);
+        if (slime.currentCoins != null)
+        {
+            slime.currentCoins.GetComponent<Coins>().isTaken = true;
+            slime.stopLossBalance = GameManager.greenHouseBalance - GameManager.greenHouseBalance * (slime.riskManagementPercent / 100);
+        } else
+        {
+            slime.SetBehaviorChasing();
+        }
     }
 
     void ISlimeBehavior.Exit(Slime slime)
@@ -23,16 +29,12 @@ public class SlimeReturningBehavior : ISlimeBehavior
 
 
 
-        //if (GameManager.greenHouseBalance <= slime.stopLossBalance)
-        //{
-        //    if (slime.currentCoins.GetComponent<Coins>().positiveDeal == false)
-        //    {
-        //        slime.currentCoins.GetComponent<Coins>().isChosen = false;
-        //        slime.currentCoins.GetComponent<Coins>().isTaken = false;
-        //        slime.currentCoins.GetComponent<Coins>().DeactivateCoins();
-        //        slime.SetBehaviorChasing();
-        //    }
-        //}
+        if (GameManager.greenHouseBalance <= slime.stopLossBalance && slime.currentCoins.GetComponent<Coins>().positiveDeal == false)
+        {
+            slime.currentCoins.GetComponent<Coins>().isTaken = false;
+            slime.SetBehaviorChasing();
+            Debug.Log("Stop Loss Achieved");
+        }
     }
 
     void ISlimeBehavior.FixedUpdate(Slime slime)

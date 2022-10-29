@@ -227,9 +227,9 @@ MonoBehaviour:
     m_Bits: 128
   coinHolder: {fileID: 2762965301267432189}
   speed: 3
-  searchingRange: 30
+  searchingRange: 100
   stopLossBalance: 0
-  riskManagementPercent: 1
+  riskManagementPercent: 50
 --- !u!1 &5315415965660695912
 GameObject:
   m_ObjectHideFlags: 0
