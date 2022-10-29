@@ -6,19 +6,19 @@ using UnityEngine.UIElements;
 
 public class SlimeChasingBehavior : ISlimeBehavior
 {
-    private Collider[] apples;
+    private Collider[] coins;
     private Vector3 direction;
 
     void ISlimeBehavior.Enter(Slime slime)
     {
-        apples = Physics.OverlapSphere(slime.transform.position, slime.searchingRange, slime.applesMask);
+        coins = Physics.OverlapSphere(slime.transform.position, slime.searchingRange, slime.coinsMask);
 
-        foreach (Collider apple in apples)
+        foreach (Collider coin in coins)
         {
-            if (!apple.GetComponent<Apple>().IsTaken)
+            if (!coin.GetComponent<Coins>().isChosen)
             {
-                slime.currentApple = apple.gameObject;
-                slime.currentApple.GetComponent<Apple>().IsTaken = true;
+                slime.currentCoins = coin.gameObject;
+                slime.currentCoins.GetComponent<Coins>().isChosen = true;
 
                 break;
             }
@@ -36,10 +36,10 @@ public class SlimeChasingBehavior : ISlimeBehavior
 
     void ISlimeBehavior.FixedUpdate(Slime slime)
     {
-        if (slime.currentApple != null)
+        if (slime.currentCoins != null)
         {
-            slime.body.velocity = (slime.currentApple.transform.position - slime.transform.position).normalized * slime.speed;
-            slime.transform.LookAt(slime.currentApple.transform.position);
+            slime.body.velocity = (slime.currentCoins.transform.position - slime.transform.position).normalized * slime.speed;
+            slime.transform.LookAt(slime.currentCoins.transform.position);
         }
     }
 }

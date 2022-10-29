@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2762965301267432189}
   m_Layer: 3
-  m_Name: AppleHolder
+  m_Name: Coins Holder
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 5565698186084456581}
   m_Layer: 3
   m_Name: Green Bunny
-  m_TagString: Untagged
+  m_TagString: GreenSlime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,11 +148,11 @@ MonoBehaviour:
   body: {fileID: 0}
   anim: {fileID: 0}
   campfire: {fileID: 0}
-  currentApple: {fileID: 0}
-  applesMask:
+  currentCoins: {fileID: 0}
+  coinsMask:
     serializedVersion: 2
     m_Bits: 0
-  appleHolder: {fileID: 0}
+  coinHolder: {fileID: 0}
   speed: 0
   searchingRange: 10
 --- !u!54 &5565698186084456582
@@ -182,8 +182,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.29901636
-  m_Center: {x: 0, y: 0.29619253, z: 0}
+  m_Radius: 0.3296556
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!95 &5565698186084456578
 Animator:
   serializedVersion: 4
@@ -219,13 +219,13 @@ MonoBehaviour:
   body: {fileID: 0}
   anim: {fileID: 0}
   campfire: {fileID: 0}
-  currentApple: {fileID: 0}
-  applesMask:
+  currentCoins: {fileID: 0}
+  coinsMask:
     serializedVersion: 2
-    m_Bits: 64
-  appleHolder: {fileID: 2762965301267432189}
+    m_Bits: 128
+  coinHolder: {fileID: 2762965301267432189}
   speed: 3
-  searchingRange: 15
+  searchingRange: 30
 --- !u!1 &5315415965660695912
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,9 +16,9 @@ public class Slime : MonoBehaviour
 
     //Environment objects
     public GameObject campfire;
-    public GameObject currentApple;
-    public LayerMask applesMask;
-    public Transform appleHolder;
+    public GameObject currentCoins;
+    public LayerMask coinsMask;
+    public Transform coinHolder;
 
     //Slime properties
     public float speed = 3f;
@@ -111,7 +111,7 @@ public class Slime : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == currentApple)
+        if (collision.gameObject == currentCoins)
         {
             SetBehaviorReturning();
         }
@@ -121,7 +121,7 @@ public class Slime : MonoBehaviour
     {
         if (other.gameObject == campfire)
         {
-            Destroy(currentApple);
+            Destroy(currentCoins);
             SetBehaviorChasing();
         }
     }
