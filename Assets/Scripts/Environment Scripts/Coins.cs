@@ -13,10 +13,10 @@ public class Coins : MonoBehaviour
 
     public Rigidbody body;
 
-    public int maxValue;
-    public int minValue;
+    public float maxValue;
+    public float minValue;
 
-    [SerializeField] private bool positiveDeal;
+    [SerializeField] public bool positiveDeal = true;
     [SerializeField] private float dealProbability;
     [SerializeField] private float _dealTimerMax;
     [SerializeField] private float _dealTimerMin;
@@ -26,7 +26,7 @@ public class Coins : MonoBehaviour
     [SerializeField] private float _timerMin;
     private float _timer; // Timer for adding or subtracting a value from common balance
 
-    [SerializeField] private int _riskProfit;
+    [SerializeField] private float _riskProfit;
 
     private void Awake()
     {
@@ -115,5 +115,10 @@ public class Coins : MonoBehaviour
     {
         GameManager.instance.AddGreenBalance(_riskProfit);
         _riskProfit = 0;
+    }
+
+    public void DeactivateCoins()
+    {
+        Destroy(gameObject);
     }
 }

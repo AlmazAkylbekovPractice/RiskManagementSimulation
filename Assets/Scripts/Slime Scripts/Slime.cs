@@ -24,6 +24,10 @@ public class Slime : MonoBehaviour
     public float speed = 3f;
     public float searchingRange = 100f;
 
+    //Trading values
+    public float stopLossBalance;
+    public float riskManagementPercent;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -34,6 +38,11 @@ public class Slime : MonoBehaviour
     {
         body = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>(); 
+    }
+
+    private void LoadValues()
+    {
+        stopLossBalance = GameManager.greenHouseBalance;
     }
 
     private void Start()
@@ -85,25 +94,25 @@ public class Slime : MonoBehaviour
             this.behaviorCurrent.FixedUpdate(this);
     }
 
-    private void SetBehaviorChasing()
+    public void SetBehaviorChasing()
     {
         var behavior = this.GetBehavior<SlimeChasingBehavior>();
         this.SetBehavior(behavior);
     }
 
-    private void SetBehaviorReturning()
+    public void SetBehaviorReturning()
     {
         var behavior = this.GetBehavior<SlimeReturningBehavior>();
         this.SetBehavior(behavior);
     }
 
-    private void SetBehaviorDamaging()
+    public void SetBehaviorDamaging()
     {
         var behavior = this.GetBehavior<SlimeDamageBehavior>();
         this.SetBehavior(behavior);
     }
 
-    private void SetbehaviorEscaping()
+    public void SetbehaviorEscaping()
     {
         var behavior = this.GetBehavior<SlimeEscapingBehavior>();
         this.SetBehavior(behavior);

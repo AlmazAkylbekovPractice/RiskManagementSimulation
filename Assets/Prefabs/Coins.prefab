@@ -4944,8 +4944,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 16
+  m_CollisionDetection: 1
 --- !u!114 &4472701184779435405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4967,9 +4967,9 @@ MonoBehaviour:
   minValue: 5
   positiveDeal: 1
   dealProbability: 0
-  _dealTimerMax: 5
-  _dealTimerMin: 3
-  _timerMax: 3
+  _dealTimerMax: 8
+  _dealTimerMin: 2
+  _timerMax: 4
   _timerMin: 0.5
   _riskProfit: 0
 --- !u!136 &7987273106104885054

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static int daysCount = 1;
-    public static int greenHouseBalance = 1000;
+    public static float greenHouseBalance = 100f;
 
     public static GameManager instance { get; private set; }
 
@@ -33,17 +33,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddGreenBalance(int inputBalance)
+    public void AddGreenBalance(float inputBalance)
     {
         greenHouseBalance += inputBalance;
-        greenBalanceText.text = greenHouseBalance.ToString() + "$";
+        greenBalanceText.text = Mathf.Round(greenHouseBalance).ToString() + "$";
         greenBalanceText.color = Color.green;
     }
 
-    public void SubtractGreenBalance(int inputBalance)
+    public void SubtractGreenBalance(float inputBalance)
     {
         greenHouseBalance -= inputBalance;
-        greenBalanceText.text = greenHouseBalance.ToString() + "$";
+        greenBalanceText.text = Mathf.Round(greenHouseBalance).ToString() + "$";
         greenBalanceText.color = Color.red;
     }
 }

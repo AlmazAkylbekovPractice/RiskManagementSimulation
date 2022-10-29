@@ -11,6 +11,9 @@ public class SlimeChasingBehavior : ISlimeBehavior
 
     void ISlimeBehavior.Enter(Slime slime)
     {
+        //Clearing current coins bag lot
+        slime.currentCoins = null;
+
         coins = Physics.OverlapSphere(slime.transform.position, slime.searchingRange, slime.coinsMask);
 
         foreach (Collider coin in coins)
