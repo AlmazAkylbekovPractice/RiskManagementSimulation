@@ -13,6 +13,8 @@ public class Coins : MonoBehaviour
 
     public Rigidbody body;
 
+    public string slimeType;
+
     public float maxValue;
     public float minValue;
 
@@ -67,7 +69,7 @@ public class Coins : MonoBehaviour
         {
             dealProbability = Random.Range(0, 100);
 
-            if (dealProbability >= 65)
+            if (dealProbability >= 50)
             {
                 positiveDeal = false;
             }
@@ -96,7 +98,7 @@ public class Coins : MonoBehaviour
         else
         {
             var profit = Random.Range(minValue, maxValue);
-            GameManager.instance.AddGreenBalance(profit);
+            GameManager.instance.AddBalance(profit,slimeType);
             _timer = Random.Range(_timerMin, _timerMax);
         }
     }
@@ -113,7 +115,7 @@ public class Coins : MonoBehaviour
         else
         {
             var loss = Random.Range(minValue, maxValue);
-            GameManager.instance.SubtractGreenBalance(loss);
+            GameManager.instance.SubtractBalance(loss, slimeType);
 
             _riskProfit += Mathf.Abs(loss);
             _timer = Random.Range(_timerMin, _timerMax);
@@ -122,7 +124,7 @@ public class Coins : MonoBehaviour
 
     private void ApplyRiskedValue()
     {
-        GameManager.instance.AddGreenBalance(_riskProfit);
+        GameManager.instance.AddBalance(_riskProfit, slimeType);
         _riskProfit = 0;
     }
 

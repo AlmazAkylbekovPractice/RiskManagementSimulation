@@ -8,19 +8,22 @@ public class GameManager : MonoBehaviour
 {
     public static int daysCount = 1;
     public static float greenHouseBalance = 100f;
+    public static float yellowHouseBalance = 100f;
 
     public static GameManager instance { get; private set; }
 
     [SerializeField]
     public Text daysCountText;
 
-    [SerializeField]
-    public Text greenBalanceText;
+    [SerializeField] public Text greenBalanceText;
+    [SerializeField] public Text yellowBalanceText;
 
 
     private void Awake()
     {
         greenBalanceText.text = greenHouseBalance.ToString() + "$";
+        yellowBalanceText.text = yellowHouseBalance.ToString() + "$";
+
         daysCountText.text = daysCount.ToString();
 
         if (instance != null && instance != this)
@@ -33,17 +36,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddGreenBalance(float inputBalance)
+    public void AddBalance(float inputBalance, string slimeType)
     {
-        greenHouseBalance += inputBalance;
-        greenBalanceText.text = Mathf.Round(greenHouseBalance).ToString() + "$";
-        greenBalanceText.color = Color.green;
+        if (slimeType == "Green")
+        {
+            greenHouseBalance += inputBalance;
+            greenBalanceText.text = Mathf.Round(greenHouseBalance).ToString() + "$";
+            greenBalanceText.color = Color.green;
+        } else if (slimeType == "Yellow")
+        {
+            yellowHouseBalance += inputBalance;
+            yellowBalanceText.text = Mathf.Round(yellowHouseBalance).ToString() + "$";
+            yellowBalanceText.color = Color.yellow;
+        }
     }
 
-    public void SubtractGreenBalance(float inputBalance)
+    public void SubtractBalance(float inputBalance, string slimeType)
     {
-        greenHouseBalance -= inputBalance;
-        greenBalanceText.text = Mathf.Round(greenHouseBalance).ToString() + "$";
-        greenBalanceText.color = Color.red;
+        if (slimeType == "Green")
+        {
+            greenHouseBalance -= inputBalance;
+            greenBalanceText.text = Mathf.Round(greenHouseBalance).ToString() + "$";
+            greenBalanceText.color = Color.red;
+        }
+        else if (slimeType == "Yellow")
+        {
+            yellowHouseBalance -= inputBalance;
+            yellowBalanceText.text = Mathf.Round(yellowHouseBalance).ToString() + "$";
+            yellowBalanceText.color = Color.red;
+        }
     }
 }

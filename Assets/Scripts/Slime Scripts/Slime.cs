@@ -6,6 +6,8 @@ using System;
 
 public class Slime : MonoBehaviour
 {
+    [SerializeField] public string slimeType;
+
     //State Machine
     private Dictionary<Type, ISlimeBehavior> behaviorsMap;
     private ISlimeBehavior behaviorCurrent;
@@ -15,7 +17,7 @@ public class Slime : MonoBehaviour
     public Animator anim;
 
     //Environment objects
-    public GameObject campfire;
+    public GameObject bag;
     public GameObject currentCoins;
     public LayerMask coinsMask;
     public Transform coinHolder;
@@ -120,10 +122,11 @@ public class Slime : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == campfire)
+        if (other.gameObject == bag)
         {
             Destroy(currentCoins);
             SetBehaviorChasing();
+
         } else if (other.gameObject == currentCoins)
         {
             SetBehaviorReturning();

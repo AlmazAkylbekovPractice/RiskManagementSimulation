@@ -4939,7 +4939,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4207256948808330048}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -4964,12 +4964,13 @@ MonoBehaviour:
   _redParticles: {fileID: 7529158138943107496}
   _greenParticles: {fileID: 3301523278581190474}
   body: {fileID: 0}
+  slimeType: 
   maxValue: 2
-  minValue: 5
+  minValue: 20
   positiveDeal: 0
   dealProbability: 0
-  _dealTimerMax: 8
-  _dealTimerMin: 1
+  _dealTimerMax: 12
+  _dealTimerMin: 2
   _timerMax: 2
   _timerMin: 0.5
   _riskProfit: 0
@@ -4998,8 +4999,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5.27
-  m_Center: {x: -0.04517889, y: 0.090299904, z: -0.15244049}
+  m_Radius: 5.6721554
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7529158138943107496
 GameObject:
   m_ObjectHideFlags: 0
