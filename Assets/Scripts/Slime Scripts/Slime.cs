@@ -120,16 +120,4 @@ public class Slime : MonoBehaviour
         this.SetBehavior(behavior);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == bag)
-        {
-            Destroy(currentCoins);
-            SetBehaviorChasing();
-
-        } else if (other.gameObject == currentCoins)
-        {
-            SetBehaviorReturning();
-        }
-    }
 }

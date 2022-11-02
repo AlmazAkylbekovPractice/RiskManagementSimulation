@@ -9,6 +9,8 @@ public class SlimeChasingBehavior : ISlimeBehavior
     private Collider[] coins;
     private Vector3 direction;
 
+    private float minDistance = Mathf.Infinity;
+
     void ISlimeBehavior.Enter(Slime slime)
     {
         //Clearing current coins bag lot
@@ -20,12 +22,19 @@ public class SlimeChasingBehavior : ISlimeBehavior
         {
             if (!coin.GetComponent<Coins>().isChosen)
             {
-                slime.currentCoins = coin.gameObject;
-                slime.currentCoins.GetComponent<Coins>().isChosen = true;
+                //Finding closest coins
+                float distance = Vector3.Distance(slime.transform.position, coin.transform.position);
 
-                break;
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    slime.currentCoins = coin.gameObject;
+                }
             }
         }
+
+        slime.currentCoins.GetComponent<Coins>().isChosen = true;
+        minDistance = Mathf.Infinity;
     }
 
     void ISlimeBehavior.Exit(Slime slime)
@@ -35,6 +44,11 @@ public class SlimeChasingBehavior : ISlimeBehavior
 
     void ISlimeBehavior.Update(Slime slime)
     {
+
+        if (Vector3.Distance(slime.transform.position, slime.currentCoins.transform.position) < 1f)
+        {
+            slime.SetBehaviorReturning();
+        }
     }
 
     void ISlimeBehavior.FixedUpdate(Slime slime)

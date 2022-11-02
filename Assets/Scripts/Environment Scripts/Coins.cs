@@ -67,9 +67,9 @@ public class Coins : MonoBehaviour
         }
         else
         {
-            dealProbability = Random.Range(0, 100);
+            var randomNum = Random.Range(0, 100);
 
-            if (dealProbability >= 50)
+            if (randomNum >= dealProbability)
             {
                 positiveDeal = false;
             }

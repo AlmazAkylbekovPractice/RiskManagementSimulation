@@ -4966,13 +4966,13 @@ MonoBehaviour:
   body: {fileID: 0}
   slimeType: 
   maxValue: 2
-  minValue: 20
+  minValue: 22
   positiveDeal: 0
-  dealProbability: 0
+  dealProbability: 50
   _dealTimerMax: 12
   _dealTimerMin: 2
-  _timerMax: 2
-  _timerMin: 0.5
+  _timerMax: 1
+  _timerMin: 0.1
   _riskProfit: 0
 --- !u!136 &7987273106104885054
 CapsuleCollider:

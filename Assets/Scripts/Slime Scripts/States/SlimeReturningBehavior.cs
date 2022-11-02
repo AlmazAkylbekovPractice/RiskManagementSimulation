@@ -11,7 +11,7 @@ public class SlimeReturningBehavior : ISlimeBehavior
             slime.currentCoins.GetComponent<Coins>().isTaken = true;
             slime.currentCoins.GetComponent<Coins>().slimeType = slime.slimeType;
 
-            slime.stopLossBalance = GameManager.greenHouseBalance - GameManager.greenHouseBalance * (slime.riskManagementPercent / 100);
+            slime.stopLossBalance = GameManager.GetSlimeType(slime.slimeType) - GameManager.GetSlimeType(slime.slimeType) * (slime.riskManagementPercent / 100);
         } else
         {
             slime.SetBehaviorChasing();
@@ -29,13 +29,17 @@ public class SlimeReturningBehavior : ISlimeBehavior
             //Placing apple to apple holder
             slime.currentCoins.transform.position = slime.coinHolder.transform.position;
 
-
-
-        if (GameManager.greenHouseBalance <= slime.stopLossBalance && slime.currentCoins.GetComponent<Coins>().positiveDeal == false)
+        if (GameManager.GetSlimeType(slime.slimeType) <= slime.stopLossBalance && slime.currentCoins.GetComponent<Coins>().positiveDeal == false)
         {
             slime.currentCoins.GetComponent<Coins>().isTaken = false;
             slime.SetBehaviorChasing();
             Debug.Log("Stop Loss Achieved");
+        }
+
+        if (Vector3.Distance(slime.transform.position, slime.bag.transform.position) < 1)
+        {
+            Slime.Destroy(slime.currentCoins);
+            slime.SetBehaviorChasing();
         }
     }
 

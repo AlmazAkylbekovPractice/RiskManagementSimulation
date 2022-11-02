@@ -404,9 +404,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1539279278384041122}
-  - component: {fileID: 7279018158541114826}
   - component: {fileID: 7279018158541114825}
   - component: {fileID: 7279018158541114824}
+  - component: {fileID: 7279018158541114826}
   - component: {fileID: 7279018158541114831}
   m_Layer: 3
   m_Name: Yellow Slime
@@ -433,31 +433,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
---- !u!114 &7279018158541114826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7279018158541114830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6bb5ff65f1eb42d08b4dec7b13ee6fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slimeType: Yellow
-  body: {fileID: 0}
-  anim: {fileID: 0}
-  bag: {fileID: 0}
-  currentCoins: {fileID: 0}
-  coinsMask:
-    serializedVersion: 2
-    m_Bits: 128
-  coinHolder: {fileID: 671260308585464580}
-  speed: 3
-  searchingRange: 100
-  stopLossBalance: 0
-  riskManagementPercent: 20
 --- !u!54 &7279018158541114825
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -487,6 +462,31 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3296556
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!114 &7279018158541114826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279018158541114830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bb5ff65f1eb42d08b4dec7b13ee6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slimeType: Yellow
+  body: {fileID: 0}
+  anim: {fileID: 0}
+  bag: {fileID: 0}
+  currentCoins: {fileID: 0}
+  coinsMask:
+    serializedVersion: 2
+    m_Bits: 128
+  coinHolder: {fileID: 671260308585464580}
+  speed: 3
+  searchingRange: 100
+  stopLossBalance: 0
+  riskManagementPercent: 5
 --- !u!95 &7279018158541114831
 Animator:
   serializedVersion: 4
