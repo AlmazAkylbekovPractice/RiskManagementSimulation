@@ -15,10 +15,9 @@ public class Coins : MonoBehaviour
 
     public string slimeType;
 
-    public float maxValue;
-    public float minValue;
+    public float value = 0;
 
-    [SerializeField] public bool positiveDeal = true;
+    [SerializeField] public bool positiveDeal;
     [SerializeField] private float dealProbability;
     [SerializeField] private float _dealTimerMax;
     [SerializeField] private float _dealTimerMin;
@@ -36,13 +35,16 @@ public class Coins : MonoBehaviour
         _timer = Random.Range(_timerMin, _timerMax);
         _dealTimer = Random.Range(_dealTimerMin, _dealTimerMax);
 
+        value = GameManager.daysCount;
+        
         RandomiseDeal();
     }
 
     private void RandomiseDeal()
     {
-        float randomNum = Random.Range(0, 2);
-        if (randomNum == 0) positiveDeal = false;
+        var randomNum = Random.Range(0, 100);
+
+        if (randomNum >= dealProbability)positiveDeal = false;
         else positiveDeal = true;
     }
 
@@ -97,7 +99,7 @@ public class Coins : MonoBehaviour
         }
         else
         {
-            var profit = Random.Range(minValue, maxValue);
+            var profit = value;
             GameManager.instance.AddBalance(profit,slimeType);
             _timer = Random.Range(_timerMin, _timerMax);
         }
@@ -114,7 +116,7 @@ public class Coins : MonoBehaviour
         }
         else
         {
-            var loss = Random.Range(minValue, maxValue);
+            var loss = value;
             GameManager.instance.SubtractBalance(loss, slimeType);
 
             _riskProfit += Mathf.Abs(loss);

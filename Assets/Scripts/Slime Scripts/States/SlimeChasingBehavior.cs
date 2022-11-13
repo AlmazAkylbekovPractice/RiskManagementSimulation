@@ -35,6 +35,7 @@ public class SlimeChasingBehavior : ISlimeBehavior
 
         slime.currentCoins.GetComponent<Coins>().isChosen = true;
         minDistance = Mathf.Infinity;
+
     }
 
     void ISlimeBehavior.Exit(Slime slime)
@@ -44,6 +45,10 @@ public class SlimeChasingBehavior : ISlimeBehavior
 
     void ISlimeBehavior.Update(Slime slime)
     {
+        if (slime.currentCoins == null)
+        {
+            slime.SetBehaviorChasing();
+        }
 
         if (Vector3.Distance(slime.transform.position, slime.currentCoins.transform.position) < 1f)
         {

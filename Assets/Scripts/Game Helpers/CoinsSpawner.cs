@@ -14,12 +14,18 @@ public class CoinsSpawner : MonoBehaviour
 
     private Vector3 spawnPoint;
 
+
+    public static CoinsSpawner instance;
+
     private void Awake()
     {
+        GameManager.DayChanged += OnDayChanged;
+
         SpawnCoins();
     }
 
-    private void SpawnCoins()
+
+    public void SpawnCoins()
     {
         for (int i = 0; i < bags; i++)
         {
@@ -28,11 +34,28 @@ public class CoinsSpawner : MonoBehaviour
         }
     }
 
-    private void GenerateRandomPoint()
+    public void GenerateRandomPoint()
     {
         spawnPoint.x = Random.Range(firstPoint.position.x, secondPoint.position.x);
         spawnPoint.z = Random.Range(firstPoint.position.z, secondPoint.position.z);
         spawnPoint.y = 2;
+    }
+
+    public void DeleteCoins()
+    {
+        GameObject[] bags = GameObject.FindGameObjectsWithTag("Bag");
+
+        for (int i =0; i < bags.Length; i++)
+        {
+            if (bags[i].GetComponent<Coins>().isTaken == false)
+                Destroy(bags[i]);
+        }
+    }
+
+    void OnDayChanged()
+    {
+        DeleteCoins();
+        SpawnCoins();
     }
 
 

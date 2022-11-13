@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,7 +7,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static event Action DayChanged;
+
     public static int daysCount = 1;
+    public static float dayTimer = 10f;
+
     public static float greenHouseBalance = 100f;
     public static float yellowHouseBalance = 100f;
     public static float redHouseBalance = 100f;
@@ -44,27 +49,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        DayTimer();
+    }
+
     public void AddBalance(float inputBalance, string slimeType)
     {
         if (slimeType == "Green")
         {
             greenHouseBalance += inputBalance;
-            greenBalanceText.text = Mathf.Round(greenHouseBalance).ToString() + "$";
+            greenBalanceText.text = Mathf.Round(greenHouseBalance).ToString() + " $";
             greenBalanceText.color = Color.green;
         } else if (slimeType == "Yellow")
         {
             yellowHouseBalance += inputBalance;
-            yellowBalanceText.text = Mathf.Round(yellowHouseBalance).ToString() + "$";
+            yellowBalanceText.text = Mathf.Round(yellowHouseBalance).ToString() + " $";
             yellowBalanceText.color = Color.yellow;
         } else if (slimeType == "Red")
         {
             redHouseBalance += inputBalance;
-            redBalanceText.text = Mathf.Round(redHouseBalance).ToString() + "$";
+            redBalanceText.text = Mathf.Round(redHouseBalance).ToString() + " $";
             redBalanceText.color = Color.red;
         } else if (slimeType == "Violet")
         {
             violetHouseBalance += inputBalance;
-            violetBalanceText.text = Mathf.Round(violetHouseBalance).ToString() + "$";
+            violetBalanceText.text = Mathf.Round(violetHouseBalance).ToString() + " $";
             violetBalanceText.color = violetColor;
         }
     }
@@ -74,24 +84,24 @@ public class GameManager : MonoBehaviour
         if (slimeType == "Green")
         {
             greenHouseBalance -= inputBalance;
-            greenBalanceText.text = Mathf.Round(greenHouseBalance).ToString() + "$";
+            greenBalanceText.text = Mathf.Round(greenHouseBalance).ToString() + " $";
             greenBalanceText.color = Color.black;
         }
         else if (slimeType == "Yellow")
         {
             yellowHouseBalance -= inputBalance;
-            yellowBalanceText.text = Mathf.Round(yellowHouseBalance).ToString() + "$";
+            yellowBalanceText.text = Mathf.Round(yellowHouseBalance).ToString() + " $";
             yellowBalanceText.color = Color.black;
         }
         else if (slimeType == "Red")
         {
             redHouseBalance -= inputBalance;
-            redBalanceText.text = Mathf.Round(redHouseBalance).ToString() + "$";
+            redBalanceText.text = Mathf.Round(redHouseBalance).ToString() + " $";
             redBalanceText.color = Color.black;
         } else if (slimeType == "Violet")
         {
             violetHouseBalance -= inputBalance;
-            violetBalanceText.text = Mathf.Round(violetHouseBalance).ToString() + "$";
+            violetBalanceText.text = Mathf.Round(violetHouseBalance).ToString() + " $";
             violetBalanceText.color = Color.black;
         }
     }
@@ -116,5 +126,21 @@ public class GameManager : MonoBehaviour
             balance = violetHouseBalance;
         }
         return balance;
+    }
+
+    public void DayTimer()
+    {
+        if (dayTimer > 0)
+        {
+            dayTimer -= Time.deltaTime;
+        } else
+        {
+            daysCount++;
+            daysCountText.text = daysCount.ToString();
+
+            DayChanged?.Invoke();
+
+            dayTimer = 10f;
+        }
     }
 }

@@ -4965,10 +4965,9 @@ MonoBehaviour:
   _greenParticles: {fileID: 3301523278581190474}
   body: {fileID: 0}
   slimeType: 
-  maxValue: 2
-  minValue: 22
+  value: 1
   positiveDeal: 0
-  dealProbability: 50
+  dealProbability: 35
   _dealTimerMax: 12
   _dealTimerMin: 2
   _timerMax: 1

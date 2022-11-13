@@ -25,6 +25,11 @@ public class SlimeReturningBehavior : ISlimeBehavior
 
     void ISlimeBehavior.Update(Slime slime)
     {
+        if (slime.currentCoins == null)
+        {
+            slime.SetBehaviorChasing();
+        }
+
         if (slime.currentCoins != null)
             //Placing apple to apple holder
             slime.currentCoins.transform.position = slime.coinHolder.transform.position;
