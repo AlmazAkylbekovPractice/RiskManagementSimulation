@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     public static event Action DayChanged;
 
     public static int daysCount = 1;
-    public static float dayTimer = 10f;
+
+    [SerializeField] public float dayTimer = 10f;
+    private float _timer; 
 
     public static float greenHouseBalance = 100f;
     public static float yellowHouseBalance = 100f;
@@ -30,15 +32,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Text violetBalanceText;
 
 
+    public int greenDeals = 0;
+    public int yellowDeals = 0;
+    public int redDeals = 0;
+    public int violetDeals = 0;
+
     private void Awake()
     {
-        greenBalanceText.text = greenHouseBalance.ToString() + "$";
-        yellowBalanceText.text = yellowHouseBalance.ToString() + "$";
-        redBalanceText.text = redHouseBalance.ToString() + "$";
-        violetBalanceText.text = violetHouseBalance.ToString() + "$";
-
-        daysCountText.text = daysCount.ToString();
-
         if (instance != null && instance != this)
         {
             Destroy(this);
@@ -47,6 +47,27 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    private void Start()
+    {
+        LoadUI();
+    }
+
+    private void LoadUI()
+    {
+        greenBalanceText.text = greenHouseBalance.ToString() + "$";
+        yellowBalanceText.text = yellowHouseBalance.ToString() + "$";
+        redBalanceText.text = redHouseBalance.ToString() + "$";
+        violetBalanceText.text = violetHouseBalance.ToString() + "$";
+        daysCountText.text = daysCount.ToString();
+    }
+
+    private void LoadParameters()
+    {
+
+        //Set timer
+        _timer = dayTimer;
     }
 
     private void Update()
@@ -128,11 +149,31 @@ public class GameManager : MonoBehaviour
         return balance;
     }
 
+    public void CountDeals(string inputType)
+    {
+        if (inputType == "Green")
+        {
+            greenDeals++;
+        }
+        else if (inputType == "Yellow")
+        {
+            yellowDeals++;
+        }
+        else if (inputType == "Red")
+        {
+            redDeals++;
+        }
+        else if (inputType == "Violet")
+        {
+            violetDeals++;
+        }
+    }
+
     public void DayTimer()
     {
-        if (dayTimer > 0)
+        if (_timer > 0)
         {
-            dayTimer -= Time.deltaTime;
+            _timer -= Time.deltaTime;
         } else
         {
             daysCount++;
@@ -140,7 +181,7 @@ public class GameManager : MonoBehaviour
 
             DayChanged?.Invoke();
 
-            dayTimer = 10f;
+            _timer = dayTimer ;
         }
     }
 }

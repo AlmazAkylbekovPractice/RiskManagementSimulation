@@ -4967,7 +4967,7 @@ MonoBehaviour:
   slimeType: 
   value: 1
   positiveDeal: 0
-  dealProbability: 35
+  dealProbability: 50
   _dealTimerMax: 12
   _dealTimerMin: 2
   _timerMax: 1

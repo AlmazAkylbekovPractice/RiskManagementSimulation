@@ -35,7 +35,7 @@ public class Coins : MonoBehaviour
         _timer = Random.Range(_timerMin, _timerMax);
         _dealTimer = Random.Range(_dealTimerMin, _dealTimerMax);
 
-        value = GameManager.daysCount;
+        value = GameManager.daysCount ^ 2;
         
         RandomiseDeal();
     }
