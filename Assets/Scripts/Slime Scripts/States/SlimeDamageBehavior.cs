@@ -6,7 +6,7 @@ public class SlimeDamageBehavior : ISlimeBehavior
 {
     void ISlimeBehavior.Enter(Slime slime)
     {
-
+        slime.DestorySlime();
     }
 
     void ISlimeBehavior.Exit(Slime slime)

@@ -14,10 +14,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float dayTimer = 10f;
     private float _timer; 
 
+    //House Balances
     public static float greenHouseBalance = 100f;
     public static float yellowHouseBalance = 100f;
     public static float redHouseBalance = 100f;
     public static float violetHouseBalance = 100f;
+
+    //House Risk Management percents
+    public static float greenRM = 3f;
+    public static float yellowRM = 5f;
+    public static float redRM = 10f;
+    public static float violetRM = 30f;
 
     public Color violetColor = new Color(138, 0,255);
 
@@ -52,6 +59,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         LoadUI();
+        LoadParameters();
     }
 
     private void LoadUI()
@@ -127,7 +135,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static float GetSlimeType(string inputType)
+    public float GetBalanceByType(string inputType)
     {
         float balance = 0;
 
@@ -183,5 +191,29 @@ public class GameManager : MonoBehaviour
 
             _timer = dayTimer ;
         }
+    }
+
+    public float GetRiskByType(string inputType)
+    {
+        float rm = 0;
+
+        if (inputType == "Green")
+        {
+            rm = greenRM;
+        }
+        else if (inputType == "Yellow")
+        {
+            rm = yellowRM;
+        }
+        else if (inputType == "Red")
+        {
+            rm = redRM;
+        }
+        else if (inputType == "Violet")
+        {
+            rm = violetRM;
+        }
+
+        return rm;
     }
 }

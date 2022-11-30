@@ -4967,11 +4967,11 @@ MonoBehaviour:
   slimeType: 
   value: 1
   positiveDeal: 0
-  dealProbability: 50
-  _dealTimerMax: 12
-  _dealTimerMin: 2
+  dealProbability: 30
+  _dealTimerMax: 5
+  _dealTimerMin: 1
   _timerMax: 1
-  _timerMin: 0.1
+  _timerMin: 0.2
   _riskProfit: 0
 --- !u!136 &7987273106104885054
 CapsuleCollider:

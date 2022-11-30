@@ -57,6 +57,4 @@ public class CoinsSpawner : MonoBehaviour
         DeleteCoins();
         SpawnCoins();
     }
-
-
 }

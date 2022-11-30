@@ -29,14 +29,16 @@ public class Coins : MonoBehaviour
 
     [SerializeField] private float _riskProfit;
 
+    private bool valueByTypeApplied = false;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
+
         _timer = Random.Range(_timerMin, _timerMax);
         _dealTimer = Random.Range(_dealTimerMin, _dealTimerMax);
-
-        value = GameManager.daysCount ^ 2;
         
+
         RandomiseDeal();
     }
 
@@ -48,9 +50,9 @@ public class Coins : MonoBehaviour
         else positiveDeal = true;
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        if (isTaken)
+        if (isTaken && isChosen)
         {
             LaunchDeal();
         }
@@ -58,6 +60,31 @@ public class Coins : MonoBehaviour
 
     public void LaunchDeal()
     {
+        if (!valueByTypeApplied)
+        {
+            switch (slimeType)
+            {
+                case "Green":
+                    value = GameManager.greenHouseBalance * 0.03f;
+                    break;
+
+                case "Yellow":
+                    value = GameManager.yellowHouseBalance * 0.05f;
+                    break;
+
+                case "Red":
+                    value = GameManager.redHouseBalance * 0.1f;
+                    break;
+
+                case "Violet":
+                    value = GameManager.violetHouseBalance * 0.3f;
+                    break;
+            }
+
+            valueByTypeApplied = true;
+        }
+        
+
         SelectDealType();
     }
 
@@ -78,6 +105,7 @@ public class Coins : MonoBehaviour
             else
             {
                 positiveDeal = true;
+
                 ApplyRiskedValue();
             }
 
@@ -100,7 +128,9 @@ public class Coins : MonoBehaviour
         else
         {
             var profit = value;
+
             GameManager.instance.AddBalance(profit,slimeType);
+
             _timer = Random.Range(_timerMin, _timerMax);
         }
     }
@@ -117,9 +147,11 @@ public class Coins : MonoBehaviour
         else
         {
             var loss = value;
+
             GameManager.instance.SubtractBalance(loss, slimeType);
 
             _riskProfit += Mathf.Abs(loss);
+
             _timer = Random.Range(_timerMin, _timerMax);
         }
     }
@@ -129,7 +161,7 @@ public class Coins : MonoBehaviour
         GameManager.instance.AddBalance(_riskProfit, slimeType);
         _riskProfit = 0;
     }
-
+    
     public void DeactivateCoins()
     {
         Destroy(gameObject);

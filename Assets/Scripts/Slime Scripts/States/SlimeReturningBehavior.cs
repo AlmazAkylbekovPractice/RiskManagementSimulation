@@ -13,7 +13,7 @@ public class SlimeReturningBehavior : ISlimeBehavior
             slime.currentCoins.GetComponent<Coins>().isTaken = true;
             slime.currentCoins.GetComponent<Coins>().slimeType = slime.slimeType;
 
-            slime.stopLossBalance = GameManager.GetSlimeType(slime.slimeType) - GameManager.GetSlimeType(slime.slimeType) * (slime.riskManagementPercent / 100);
+            slime.stopLossBalance = GameManager.instance.GetBalanceByType(slime.slimeType) - GameManager.instance.GetBalanceByType(slime.slimeType) * (slime.riskManagementPercent / 100);
         }
         else
         {
@@ -39,10 +39,16 @@ public class SlimeReturningBehavior : ISlimeBehavior
 
 
         //Counting Stop Loss and losing bag
-        if (GameManager.GetSlimeType(slime.slimeType) <= slime.stopLossBalance && slime.currentCoins.GetComponent<Coins>().positiveDeal == false)
+        if (GameManager.instance.GetBalanceByType(slime.slimeType) <= slime.stopLossBalance && slime.currentCoins.GetComponent<Coins>().positiveDeal == false)
         {
             slime.currentCoins.GetComponent<Coins>().isTaken = false;
             slime.SetBehaviorChasing();
+        }
+
+        //Destroy slime if balance is less 30$$$
+        if (GameManager.instance.GetBalanceByType(slime.slimeType) <30f && slime.currentCoins.GetComponent<Coins>().positiveDeal == false)
+        {
+            slime.SetBehaviorDamaging();
         }
 
         if (Vector3.Distance(slime.transform.position, slime.bag.transform.position) < 1)

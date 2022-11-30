@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c2c5d10f5654c6b940a5d47175585e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayTimer: 20
+  dayTimer: 60
   violetColor: {r: 138, g: 0, b: 255, a: 1}
   daysCountText: {fileID: 193142363}
   greenBalanceText: {fileID: 425856774}

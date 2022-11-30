@@ -39,16 +39,14 @@ public class Slime : MonoBehaviour
     private void LoadComponents()
     {
         body = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>(); 
-    }
+        anim = GetComponent<Animator>();
 
-    private void LoadValues()
-    {
-        stopLossBalance = GameManager.greenHouseBalance;
     }
 
     private void Start()
     {
+        riskManagementPercent = GameManager.instance.GetRiskByType(this.slimeType);
+
         this.InitBehaviors();
         this.SetBehaviorByDefault();
     }
@@ -118,6 +116,19 @@ public class Slime : MonoBehaviour
     {
         var behavior = this.GetBehavior<SlimeEscapingBehavior>();
         this.SetBehavior(behavior);
+    }
+
+    public void DestorySlime()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public void OnDestroy()
+    {
+        if (currentCoins != null)
+        {
+            currentCoins.GetComponent<Coins>().isTaken = false;
+        }
     }
 
 }
